@@ -4,27 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\Student;
-use app\Models\Course;
-use app\Models\Grade;
-
-class Enrollments extends Model
+use App\Models\Student;
+use App\Models\Course;
+use App\Models\Grade;
+class Enrollment extends Model
 {
-    /** @use HasFactory<\Database\Factories\EnrollmentsFactory> */
     use HasFactory;
 
     public function student()
     {
-        return $this->belongsTo(student::class);
+        return $this->belongsTo(Student::class);
     }
 
     public function course()
     {
-        return $this->belongsTo(course::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function grade()
     {
-        return $this->belongsTo(grade::class);
+        return $this->hasMany(Grade::class);
     }
 }

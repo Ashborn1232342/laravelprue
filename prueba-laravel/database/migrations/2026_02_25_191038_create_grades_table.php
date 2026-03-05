@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
+
+            $table->string('title'); // Ej: Parcial 1
+            $table->text('description')->nullable();
+            $table->decimal('score', 5, 2);
+            $table->decimal('weight', 5, 2);
+            $table->date('evaluation_date');
+
+            $table->foreignId('enrollment_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

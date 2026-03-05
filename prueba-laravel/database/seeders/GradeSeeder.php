@@ -2,16 +2,20 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Grade;
+use App\Models\Enrollment;
 
 class GradeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        $enrollments = Enrollment::all();
+
+        foreach ($enrollments as $enrollment) {
+            Grade::factory()->count(4)->create([
+                'enrollment_id' => $enrollment->id,
+            ]);
+        }
     }
 }

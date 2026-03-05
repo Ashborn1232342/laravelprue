@@ -195,7 +195,8 @@ const showingNavigationDropdown = ref(false);
             </main>
         </div>
     </div>
-    <v-card>
+
+      <v-card>
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
@@ -204,18 +205,18 @@ const showingNavigationDropdown = ref(false);
       >
         <v-list>
           <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-            subtitle="sandra_a88@gmailcom"
-            title="Sandra Adams"
+            prepend-avatar="https://th.bing.com/th/id/OIP.krWheLZFtnwW0InhUOQZZAHaEy?w=279&h=180&c=7&r=0&o=7&cb=defcachec2&dpr=1.3&pid=1.7&rm=3"
+            :subtitle="$page.props.auth.user.email"
+            v-title="$page.props.auth.user.name"
           ></v-list-item>
         </v-list>
 
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-multiple" title="Shared with me" value="shared"></v-list-item>
-          <v-list-item prepend-icon="mdi-star" title="Starred" value="starred"></v-list-item>
+            <Link :href="route('student.index')" class="text-decoration-none">
+          <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="myfiles"></v-list-item>
+            </Link>
         </v-list>
       </v-navigation-drawer>
 
