@@ -11,9 +11,9 @@ class StudentController extends Controller
     public function index()
 {
     $estudiantes = Student::all();
-    dd($estudiantes);
+   // dd($estudiantes);
     return Inertia::render('Student/Index', [
-        'estudiantes' => $estudiantes
+       //   'estudiantes' => $estudiantes
     ]);
 }
 }

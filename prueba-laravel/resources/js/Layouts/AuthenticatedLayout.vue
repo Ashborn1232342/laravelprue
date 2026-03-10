@@ -8,6 +8,37 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+
+const links = [
+    'Home',
+    'About Us',
+    'Team',
+    'Services',
+    'Blog',
+    'Contact Us',
+  ]
+
+   const messages = [
+    {
+      from: 'You',
+      message: `Sure, I'll see you later.`,
+      time: '10:42am',
+      color: 'deep-purple-lighten-1',
+    },
+    {
+      from: 'John Doe',
+      message: 'Yeah, sure. Does 1:00pm work?',
+      time: '10:37am',
+      color: 'green',
+    },
+    {
+      from: 'You',
+      message: 'Did you still want to grab lunch today?',
+      time: '9:47am',
+      color: 'deep-purple-lighten-1',
+    },
+  ]
 </script>
 
 <template>
@@ -189,6 +220,8 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
+
+
             <!-- Page Content -->
             <main>
                 <slot />
@@ -196,7 +229,8 @@ const showingNavigationDropdown = ref(false);
         </div>
     </div>
 
-      <v-card>
+
+ <v-card>
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
@@ -205,22 +239,49 @@ const showingNavigationDropdown = ref(false);
       >
         <v-list>
           <v-list-item
-            prepend-avatar="https://th.bing.com/th/id/OIP.krWheLZFtnwW0InhUOQZZAHaEy?w=279&h=180&c=7&r=0&o=7&cb=defcachec2&dpr=1.3&pid=1.7&rm=3"
+            prepend-avatar="https://image2url.com/r2/default/images/1771360358863-98b4b741-f775-4a01-bca9-3c8f2ef59585.jpg"
             :subtitle="$page.props.auth.user.email"
-            v-title="$page.props.auth.user.name"
+            v-bind:title="$page.props.auth.user.name"
           ></v-list-item>
         </v-list>
 
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-            <Link :href="route('student.index')" class="text-decoration-none">
-          <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="myfiles"></v-list-item>
-            </Link>
+
+    <Link :href="route('student.index')">
+    <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="students"></v-list-item>
+    </Link>
+
+    <Link :href="route('teacher.index')">
+     <v-list-item prepend-icon="mdi-account-tie" title="Profesores" value="teachers"></v-list-item>
+    </Link>
+
+    <Link :href="route('courses.index')">
+     <v-list-item prepend-icon="mdi-book" title="Cursos" value="courses"></v-list-item>
+    </Link>
+
+    <Link :href="route('enrollments.index')">
+     <v-list-item prepend-icon="mdi-school" title="Inscripciones" value="enrollments"></v-list-item>
+    </Link>
         </v-list>
       </v-navigation-drawer>
 
       <v-main style="height: 250px"></v-main>
     </v-layout>
   </v-card>
+
+<v-footer class="d-flex align-center justify-center ga-2 flex-wrap flex-grow-1 py-3" color="surface-light">
+    <v-btn
+      v-for="link in links"
+      :key="link"
+      :text="link"
+      variant="text"
+      rounded
+    ></v-btn>
+
+    <div class="flex-1-0-100 text-center mt-2">
+      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+    </div>
+  </v-footer>
 </template>
